@@ -4,7 +4,7 @@ android {
     compileSdkVersion 26
     buildToolsVersion "26.0.1"
     defaultConfig {
-        applicationId "com.mark.app.mkpaysample"
+        applicationId "com.maikevip.app.sweetelephant"
         minSdkVersion 19
         targetSdkVersion 26
         versionCode 1
@@ -27,6 +27,8 @@ dependencies {
     compile 'com.android.support:appcompat-v7:26.+'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     testCompile 'junit:junit:4.12'
-    compile project(':mkpayalipay')
     compile 'com.jakewharton.timber:timber:4.5.1'
+    compile project(':mkpaycore')
+    compile project(':mkpayalipay')
+    compile project(':mkpaywechat')
 }

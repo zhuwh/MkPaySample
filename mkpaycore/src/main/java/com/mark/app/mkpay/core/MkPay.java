@@ -1,11 +1,14 @@
 package com.mark.app.mkpay.core;
 
 import android.app.Activity;
+import android.content.Context;
 import android.support.annotation.IntDef;
 import android.util.SparseArray;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
+
+import timber.log.Timber;
 
 /**
  * Created by zhuwh on 2017/9/28.
@@ -36,45 +39,69 @@ public class MkPay {
 
     SparseArray<MkPayInf> mPayImpArray = new SparseArray<>();
 
-    public void init(@MkPayType int[] payTypes){
-        if (payTypes!=null){
-            for (int payType:
-                 payTypes) {
+    private Context mContext;
+
+    public MkPay(Context context) {
+        mContext = context.getApplicationContext();
+    }
+
+    public void init(@MkPayType int[] payTypes) {
+        if (payTypes != null) {
+            for (int payType :
+                    payTypes) {
                 MkPayInf payImp = create(payType);
-                if (payImp!=null){
-                    mPayImpArray.put(payType,payImp);
+                if (payImp != null) {
+                    payImp.setContext(mContext);
+                    mPayImpArray.put(payType, payImp);
                 }
             }
         }
     }
 
-    private MkPayInf create(@MkPayType int payType){
-        switch (payType){
-            case PAY_TYPE_ALIPAY:{
-                try {
-                    Class clazz = Class.forName("com.mark.app.mkpay.alipay.MkAlipay");
-                    return (MkPayInf) clazz.newInstance();
-                } catch (ClassNotFoundException e) {
-                    e.printStackTrace();
-                    return null;
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    return null;
-                }
+    private MkPayInf create(@MkPayType int payType) {
+        switch (payType) {
+            case PAY_TYPE_ALIPAY: {
+                return getInstance("com.mark.app.mkpay.alipay.MkAlipay");
             }
-            case PAY_TYPE_WXPAY:{
-
-                return null;
+            case PAY_TYPE_WXPAY: {
+                return getInstance("com.mark.app.mkpay.wechat.MkWechatPay");
             }
             default:
                 return null;
         }
     }
 
-    public void pay(Activity activity, Object payInfo, @MkPayType int type, final MkPayCallback callback) {
+    private MkPayInf getInstance(String className) {
+        try {
+            Class clazz = Class.forName(className);
+            return (MkPayInf) clazz.newInstance();
+        } catch (ClassNotFoundException e) {
+//            e.printStackTrace();
+//            Timber.e(e);
+            return null;
+        } catch (Exception e) {
+//            Timber.e(e);
+//            e.printStackTrace();
+            return null;
+        }
+    }
+
+    /**
+     * 支付方法
+     * 当type 为 PAY_TYPE_ALIPAY 时，payInfo 数据类型为String
+     * 当type 为 PAY_TYPE_WXPAY 时,payInfo 为 JSON String
+     *
+     * @param activity
+     * @param payInfo
+     * @param type
+     * @param callback
+     */
+    public void pay(Activity activity, String payInfo, @MkPayType int type, final MkPayCallback callback) {
         MkPayInf payImp = mPayImpArray.get(type);
-        if (payImp!=null){
-            payImp.pay(activity,payInfo,callback);
+        if (payImp != null) {
+            payImp.pay(activity, payInfo, callback);
+        } else {
+            Timber.e("支付渠道未初始化或初始化失败！请检查配置正确后重试！");
         }
     }
 

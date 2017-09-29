@@ -1,6 +1,7 @@
 package com.mark.app.mkpay.alipay;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.HandlerThread;
 import android.text.TextUtils;
 import android.util.Log;
@@ -20,9 +21,16 @@ import timber.log.Timber;
 
 public class MkAlipay implements MkPayInf<String> {
 
+    MkPayCallback mCallback;
+    @Override
+    public void setContext(Context context) {
+
+    }
+
     @Override
     public void pay(final Activity activity, final String payInfo,final MkPayCallback callback) {
         Timber.d("<MkAlipay:pay>");
+        mCallback = callback;
         new HandlerThread("alipay") {
             @Override
             protected void onLooperPrepared() {
@@ -30,9 +38,10 @@ public class MkAlipay implements MkPayInf<String> {
                 Map<String, String> result = alipay.payV2(payInfo, true);
                 Log.i("msp", result.toString());
                 if (result == null) {
-                    if (callback != null) {
+                    if (mCallback != null) {
                         MkPayResult payResult = new MkPayResult(MkPayResult.PAY_STATE_FAIL, "无返回内容");
-                        callback.onPayResult(payResult);
+                        mCallback.onPayResult(payResult);
+                        mCallback = null;
                     }
                     return;
                 }
@@ -56,23 +65,26 @@ public class MkAlipay implements MkPayInf<String> {
                  */
                 switch (resultStatus) {
                     case 9000: {
-                        if (callback != null) {
+                        if (mCallback != null) {
                             MkPayResult payResult = new MkPayResult(MkPayResult.PAY_STATE_SUCCESS, resultInfo);
-                            callback.onPayResult(payResult);
+                            mCallback.onPayResult(payResult);
+                            mCallback = null;
                         }
                     }
                     break;
                     case 6001: {
-                        if (callback != null) {
+                        if (mCallback != null) {
                             MkPayResult payResult = new MkPayResult(MkPayResult.PAY_STATE_CANCEL, resultInfo);
-                            callback.onPayResult(payResult);
+                            mCallback.onPayResult(payResult);
+                            mCallback = null;
                         }
                     }
                     break;
                     default: {
-                        if (callback != null) {
+                        if (mCallback != null) {
                             MkPayResult payResult = new MkPayResult(MkPayResult.PAY_STATE_FAIL, resultInfo);
-                            callback.onPayResult(payResult);
+                            mCallback.onPayResult(payResult);
+                            mCallback = null;
                         }
                     }
                 }

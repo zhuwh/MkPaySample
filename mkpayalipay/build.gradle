@@ -28,8 +28,7 @@ dependencies {
     })
     compile project(':mkpaycore')
     compile files('libs/alipaySdk-20170710.jar')
-    compile 'com.android.support:appcompat-v7:26.+'
-    compile 'com.jakewharton.timber:timber:4.5.1'
+    compile 'com.jakewharton.timber:timber:+'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     testCompile 'junit:junit:4.12'
 }
