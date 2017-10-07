@@ -5,6 +5,13 @@
     <application android:allowBackup="true" android:label="@string/app_name"
         android:supportsRtl="true">
 
+        <activity
+            android:name="com.worldpay.SaveCardActivity"
+            android:label="Card Details" />
+        <activity
+            android:name="com.worldpay.SaveAlternativePaymentMethodActivity"
+            android:label="APM Details" />
+
     </application>
 
 </manifest>
