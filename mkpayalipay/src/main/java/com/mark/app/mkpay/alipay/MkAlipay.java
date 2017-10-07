@@ -84,7 +84,6 @@ public class MkAlipay implements MkPayInf<String> {
                         if (mCallback != null) {
                             MkPayResult payResult = new MkPayResult(MkPayResult.PAY_STATE_FAIL, resultInfo);
                             mCallback.onPayResult(payResult);
-                            mCallback = null;
                         }
                     }
                 }

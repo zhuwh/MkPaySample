@@ -3,6 +3,7 @@
 buildscript {
     repositories {
         jcenter()
+
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:2.3.3'
@@ -15,7 +16,14 @@ buildscript {
 allprojects {
     repositories {
         jcenter()
+//        maven{
+//            url 'file:///Users/zhuwh/DevTools/maven/Android/repo'
+//        }
+        maven{
+            url 'http://106.14.187.190:8081/nexus/content/repositories/releases/'
+        }
     }
+
 }
 
 task clean(type: Delete) {

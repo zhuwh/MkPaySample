@@ -14,7 +14,7 @@ import timber.log.Timber;
  * Created by zhuwh on 2017/9/28.
  */
 
-public class MkPay {
+public abstract class MkPay {
 
     //支付类型
 
@@ -39,39 +39,61 @@ public class MkPay {
 
     SparseArray<MkPayInf> mPayImpArray = new SparseArray<>();
 
-    private Context mContext;
+    private Context mContext;  //应用上下文。生命周期为怎么应用的生命周期
 
-    public MkPay(Context context) {
+    private static MkPay s_instance;
+
+    private boolean isInit;
+
+    private MkPay(Context context) {
         mContext = context.getApplicationContext();
     }
 
-    public void init(@MkPayType int[] payTypes) {
-        if (payTypes != null) {
-            for (int payType :
-                    payTypes) {
-                MkPayInf payImp = create(payType);
-                if (payImp != null) {
-                    payImp.setContext(mContext);
-                    mPayImpArray.put(payType, payImp);
+    public static MkPay getInstance(Context context){
+        if (s_instance==null){
+            synchronized (MkPay.class){
+                if (s_instance==null){
+                    s_instance = new MkPay(context) {};
                 }
             }
+        }
+        return s_instance;
+    }
+
+    /**
+     * 初始化支付通道，只能初始化一次
+     * @param payTypes
+     */
+    public void init(@MkPayType int[] payTypes) {
+        if (!isInit){
+            if (payTypes != null) {
+                for (int payType :
+                        payTypes) {
+                    MkPayInf payImp = create(payType);
+                    if (payImp != null) {
+                        payImp.setContext(mContext);
+                        mPayImpArray.put(payType, payImp);
+                    }
+                }
+            }
+            isInit = true;
         }
     }
 
     private MkPayInf create(@MkPayType int payType) {
         switch (payType) {
             case PAY_TYPE_ALIPAY: {
-                return getInstance("com.mark.app.mkpay.alipay.MkAlipay");
+                return getObj("com.mark.app.mkpay.alipay.MkAlipay");
             }
             case PAY_TYPE_WXPAY: {
-                return getInstance("com.mark.app.mkpay.wechat.MkWechatPay");
+                return getObj("com.mark.app.mkpay.wechat.MkWechatPay");
             }
             default:
                 return null;
         }
     }
 
-    private MkPayInf getInstance(String className) {
+    private MkPayInf getObj(String className) {
         try {
             Class clazz = Class.forName(className);
             return (MkPayInf) clazz.newInstance();
