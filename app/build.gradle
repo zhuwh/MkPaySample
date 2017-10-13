@@ -32,6 +32,7 @@ dependencies {
     compile 'com.mark.app:mkpay-core:1.0.+'
     compile 'com.mark.app:mkpay-alipay:1.0.+'
     compile 'com.mark.app:mkpay-wechat:1.0.+'
+    compile 'com.mark.app:mkpay-worldpay:1.0.+'
     compile 'com.squareup.retrofit2:retrofit:2.3.0'
     compile 'com.squareup.retrofit2:converter-gson:2.3.0'
     compile 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
@@ -40,5 +41,4 @@ dependencies {
     //    compile project(':mkpaycore')
     //    compile project(':mkpayalipay')
     //    compile project(':mkpaywechat')
-    compile project(':mkworldpay')
 }
