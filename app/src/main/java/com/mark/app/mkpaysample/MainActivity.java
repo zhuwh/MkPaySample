@@ -16,7 +16,7 @@ import com.mark.app.mkpay.core.MkPayResult;
 import com.worldpay.Card;
 import com.worldpay.ResponseCard;
 import com.worldpay.ResponseError;
-import com.worldpay.SaveCardActivity;
+import com.worldpay.SaveCardActivity2;
 import com.worldpay.WorldPay;
 import com.worldpay.WorldPayError;
 import com.worldpay.WorldPayResponseReusableToken;
@@ -155,7 +155,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void addCard(View v){
 
-        final Intent intent = new Intent(this, SaveCardActivity.class);
+        final Intent intent = new Intent(this, SaveCardActivity2.class);
         intent.putExtra(EXTRA_CUSTOMIZE_THEME, Color.parseColor("#ff0000"));
         startActivityForResult(intent, SAVE_CARD_REQUEST_CODE);
 
@@ -164,7 +164,7 @@ public class MainActivity extends AppCompatActivity {
     public void worldPay(View v){
 
         final ResponseCard selectedCard = card;
-        SaveCardActivity
+        SaveCardActivity2
                 .requestCVC(
                         this,
                         getLayoutInflater(),

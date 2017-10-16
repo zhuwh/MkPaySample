@@ -48,7 +48,7 @@ uploadArchives {
                 name '库名,打包命令使用'
                 groupId 'com.mark.app'
                 artifactId 'mkpay-worldpay'
-                version '1.0.0'
+                version '1.0.1'
                 packaging 'jar'
 
                 licenses {

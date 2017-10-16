@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="#fff0f0f0"
+    android:paddingTop="15dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="#289BF8">
+
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:textSize="15dp"
+                android:textColor="#FFFFFF" />
+
+            <ImageView
+                android:id="@+id/btn_left"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_centerVertical="true"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_wp_back"
+                />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#FFFFFF"
+            android:orientation="vertical"
+            >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="15dp"
+                tools:ignore="PxUsage"
+                >
+                <TextView
+                    android:layout_weight="1.0"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="First Name:"
+                    android:textColor="#333333"
+                    android:textSize="16dp"
+                    tools:ignore="HardcodedText" />
+                <EditText
+                    android:id="@+id/firstNameEditText"
+                    android:layout_marginLeft="5dp"
+                    android:layout_width="0dp"
+                    android:layout_weight="2.0"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:singleLine="true"
+                    android:textColor="#333333"
+                    android:textSize="16dp"
+                    android:imeOptions="actionNext"
+                    tools:ignore="Deprecated,RtlHardcoded,TextFields" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="10dp"
+                android:background="#fff0f0f0"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="15dp"
+                tools:ignore="PxUsage"
+                >
+                <TextView
+                    android:layout_weight="1.0"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Last Name:"
+                    android:textColor="#333333"
+                    android:textSize="16dp"
+                    tools:ignore="HardcodedText" />
+                <EditText
+                    android:id="@+id/lastNameEditText"
+                    android:layout_marginLeft="10px"
+                    android:layout_width="0dp"
+                    android:layout_weight="2.0"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:singleLine="true"
+                    android:textColor="#333333"
+                    android:textSize="16dp"
+                    android:imeOptions="actionNext"
+                    tools:ignore="Deprecated,RtlHardcoded,TextFields" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="10dp"
+                android:background="#fff0f0f0"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="15dp"
+                tools:ignore="PxUsage"
+                >
+                <TextView
+                    android:layout_weight="1.0"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Card Number:"
+                    android:textColor="#333333"
+                    android:textSize="16dp"
+                    tools:ignore="HardcodedText" />
+                <EditText
+                    android:id="@+id/cardNumberEditText"
+                    android:layout_marginLeft="5dp"
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="2.0"
+                    android:background="@null"
+                    android:singleLine="true"
+                    android:textColor="#333333"
+                    android:textSize="16dp"
+                    android:inputType="number"
+                    android:maxLength="23"
+                    android:imeOptions="actionNext"
+                    tools:ignore="Deprecated,RtlHardcoded,TextFields" />
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="10dp"
+                android:background="#fff0f0f0"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="15dp"
+                tools:ignore="PxUsage"
+                >
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1.0"
+                    android:layout_height="wrap_content"
+                    android:text="Expiry Time:"
+                    android:textColor="#333333"
+                    android:textSize="16dp"
+                    tools:ignore="HardcodedText" />
+                <EditText
+                    android:id="@+id/expiryEditText"
+                    android:layout_marginLeft="5dp"
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="2.0"
+                    android:background="@null"
+                    android:singleLine="true"
+                    android:textColor="#333333"
+                    android:textSize="16dp"
+                    android:inputType="number"
+                    android:maxLength="7"
+                    android:imeOptions="actionNext"
+                    tools:ignore="Deprecated,RtlHardcoded,TextFields" />
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="10dp"
+                android:background="#fff0f0f0"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="15dp"
+                tools:ignore="PxUsage"
+                >
+                <TextView
+                    android:layout_weight="1.0"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="CVC:"
+                    android:textColor="#333333"
+                    android:textSize="16dp"
+                    tools:ignore="HardcodedText" />
+                <EditText
+                    android:id="@+id/cvcEditText"
+                    android:layout_marginLeft="5dp"
+                    android:layout_width="0dp"
+                    android:layout_weight="2.0"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:singleLine="true"
+                    android:textColor="#333333"
+                    android:textSize="16dp"
+                    android:inputType="number"
+                    android:maxLength="4"
+                    tools:ignore="Deprecated,RtlHardcoded,TextFields" />
+            </LinearLayout>
+            <!--<TextView-->
+                <!--android:id="@+id/textSecure"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="@string/textSecure"-->
+                <!--android:visibility="gone"-->
+                <!--/>-->
+
+            <!--<ImageView-->
+                <!--android:id="@+id/secureButton"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_gravity="center"-->
+                <!--android:scaleType="center"-->
+                <!--android:src="@drawable/padlock_black_medium"-->
+                <!--android:visibility="gone"-->
+                <!--/>-->
+        </LinearLayout>
+
+
+
+        <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:orientation="horizontal">-->
+
+            <!--&lt;!&ndash;<EditText&ndash;&gt;-->
+                <!--&lt;!&ndash;android:id="@+id/expiryEditText"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:layout_width="0dp"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:layout_weight="1"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:hint="@string/expiryEdit"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:inputType="number"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:maxLength="7" />&ndash;&gt;-->
+
+            <!--<EditText-->
+                <!--android:id="@+id/cvcEditText"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_weight="1"-->
+                <!--android:hint="@string/cvcEdit"-->
+                <!--android:inputType="number"-->
+                <!--android:maxLength="4" />-->
+
+        <Button
+            android:id="@+id/btn_save"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:text="Save"
+            android:textSize="15dp"
+            style="@style/WPBtn.Normal.Important"
+            android:layout_marginTop="40dp"
+            />
+
+    </LinearLayout>
+
+</ScrollView>
