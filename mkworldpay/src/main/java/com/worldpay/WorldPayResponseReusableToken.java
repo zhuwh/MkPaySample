@@ -28,4 +28,6 @@ public interface WorldPayResponseReusableToken {
      */
     void onError(WorldPayError worldPayError);
 
+    void onProcessing();
+
 }

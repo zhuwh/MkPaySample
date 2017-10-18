@@ -42,7 +42,7 @@ uploadArchives {
 ////            本地maven
 //            repository(url: 'file:///Users/zhuwh/DevTools/maven/Android/repo')
             pom.project {
-                name '库名,打包命令使用'
+                name 'mkpaycore'
                 groupId 'com.mark.app'
                 artifactId 'mkpay-core'
                 version '1.0.3'

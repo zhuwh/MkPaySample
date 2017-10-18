@@ -10,6 +10,8 @@ import java.io.Serializable;
  */
 public class ResponseCard implements Serializable {
 
+
+
     private static final long serialVersionUID = -8273784902723750008L;
 
     private String token;

@@ -312,6 +312,7 @@ public class SaveCardActivity2 extends Activity implements OnClickListener {
             @Override
             public void onClick(Dialog dialog, boolean confirm,String data) {
                 if(confirm){
+                    worldPayResponceReusable.onProcessing();
                     if (Card.validateCVC(data)) {
                             ReusableToken reusableToken = new ReusableToken();
 
