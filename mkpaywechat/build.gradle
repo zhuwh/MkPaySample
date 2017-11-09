@@ -44,7 +44,7 @@ uploadArchives {
 //            //本地maven
 //            repository(url: 'file:///Users/zhuwh/DevTools/maven/Android/repo')
             pom.project {
-                name '库名,打包命令使用'
+                name 'mkpaywechat'
                 groupId 'com.mark.app'
                 artifactId 'mkpay-wechat'
                 version '1.0.0'

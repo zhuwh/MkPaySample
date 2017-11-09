@@ -7,7 +7,10 @@ import io.reactivex.Observable;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.POST;
+import retrofit2.http.Query;
 
 /**
  * Created by zhuwh on 2017/9/11.
@@ -32,7 +35,7 @@ public interface PdMService {
         }
     }
 
-    String baseUrl = "http://192.168.0.12:8080";
+    String baseUrl = "http://192.168.0.9:8080";
 
 
 
@@ -44,5 +47,21 @@ public interface PdMService {
     @POST("/api/user/pay")
     Observable<MKBaseResultEntity<String>> getPayInfo();
 
+    /**
+     * 支付信息
+     *
+     * @return
+     */
+    @POST("/api/test/pay/ipn/info")
+    Observable<MKBaseResultEntity<String>> getIpnInfo(@Query("orderSn") String orderSn);
+
+    /**
+     * worldPay
+     *
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("/api/user/pay/wp")
+    Observable<MKBaseResultEntity<String>> worldPay(@Field("token") String token);
 
 }
