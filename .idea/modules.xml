@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/MkPaySample.iml" filepath="$PROJECT_DIR$/MkPaySample.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mkipnpay/mkipnpay.iml" filepath="$PROJECT_DIR$/mkipnpay/mkipnpay.iml" />
       <module fileurl="file://$PROJECT_DIR$/mkpayalipay/mkpayalipay.iml" filepath="$PROJECT_DIR$/mkpayalipay/mkpayalipay.iml" />
       <module fileurl="file://$PROJECT_DIR$/mkpaycore/mkpaycore.iml" filepath="$PROJECT_DIR$/mkpaycore/mkpaycore.iml" />
       <module fileurl="file://$PROJECT_DIR$/mkpaywechat/mkpaywechat.iml" filepath="$PROJECT_DIR$/mkpaywechat/mkpaywechat.iml" />

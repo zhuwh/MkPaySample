@@ -21,7 +21,7 @@ public abstract class MkPay {
     /**
      * @hide
      */
-    @IntDef({PAY_TYPE_ALIPAY, PAY_TYPE_WXPAY})
+    @IntDef({PAY_TYPE_ALIPAY, PAY_TYPE_WXPAY,PAY_TYPE_IPAYNOW})
     @Retention(RetentionPolicy.SOURCE)
     public @interface MkPayType {
     }
@@ -35,6 +35,11 @@ public abstract class MkPay {
      * 微信支付
      */
     public static final int PAY_TYPE_WXPAY = 2;
+
+    /**
+     * 现在支付
+     */
+    public static final int PAY_TYPE_IPAYNOW = 3;
 
 
     SparseArray<MkPayInf> mPayImpArray = new SparseArray<>();
@@ -87,6 +92,9 @@ public abstract class MkPay {
             }
             case PAY_TYPE_WXPAY: {
                 return getObj("com.mark.app.mkpay.wechat.MkWechatPay");
+            }
+            case PAY_TYPE_IPAYNOW: {
+                return getObj("com.mark.app.mkpay.ipaynow.MKIpnPay");
             }
             default:
                 return null;
