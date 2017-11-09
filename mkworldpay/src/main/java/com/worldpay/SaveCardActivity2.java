@@ -310,19 +310,19 @@ public class SaveCardActivity2 extends Activity implements OnClickListener {
 
         new InputDialog(activity, new InputDialog.OnCloseListener() {
             @Override
-            public void onClick(Dialog dialog, boolean confirm,String data) {
-                if(confirm){
+            public void onClick(Dialog dialog, boolean confirm, String data) {
+                if (confirm) {
                     if (Card.validateCVC(data)) {
-                            worldPayResponceReusable.onProcessing();
-                            ReusableToken reusableToken = new ReusableToken();
+                        worldPayResponceReusable.onProcessing();
+                        ReusableToken reusableToken = new ReusableToken();
 
-                            reusableToken.setClientKey(clientKey).setToken(token)
-                                    .setCvc(data);
+                        reusableToken.setClientKey(clientKey).setToken(token)
+                                .setCvc(data);
 
-                            reuseToken(activity, reusableToken, worldPayResponceReusable);
-                        } else {
-                            Toast.makeText(activity, CardValidationError.getDescription(CardValidationError.ERROR_CVC), Toast.LENGTH_SHORT).show();
-                        }
+                        reuseToken(activity, reusableToken, worldPayResponceReusable);
+                    } else {
+                        Toast.makeText(activity, CardValidationError.getDescription(CardValidationError.ERROR_CVC), Toast.LENGTH_SHORT).show();
+                    }
 
                 }
                 dialog.dismiss();
@@ -424,9 +424,30 @@ public class SaveCardActivity2 extends Activity implements OnClickListener {
         expiryText = (EditText) findViewById(R.id.expiryEditText);
         cvcText = (EditText) findViewById(cvcEditText);
 
+        //设置CVC多行的提示文案--->ljju
+        final View cvcTextHint = findViewById(R.id.cvcEditText_hint);
+        cvcText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (cvcTextHint != null) {
+                    cvcTextHint.setVisibility(s.length() > 0 ? View.GONE : View.VISIBLE);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
         findViewById(R.id.btn_left).setOnClickListener(this);
         findViewById(R.id.btn_save).setOnClickListener(this);
-        ((TextView)findViewById(R.id.tv_title)).setText(getString(R.string.cardDetails));
+        ((TextView) findViewById(R.id.tv_title)).setText(getString(R.string.cardDetails));
 //        ImageView secureButton = (ImageView) findViewById(R.id.secureButton);
 
 //        if (theme == THEME_LIGHT) {
@@ -470,9 +491,9 @@ public class SaveCardActivity2 extends Activity implements OnClickListener {
 //            new DialogMessage(SaveCardActivity2.this, theme).show();
 //        }
 
-        if (id==R.id.btn_left){
+        if (id == R.id.btn_left) {
             onBackPressed();
-        }else if(id ==R.id.btn_save){
+        } else if (id == R.id.btn_save) {
             proccessCard();
         }
     }

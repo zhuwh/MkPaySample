@@ -138,13 +138,16 @@
                         android:layout_marginLeft="5dp"
                         android:layout_weight="2.0"
                         android:background="@null"
+                        android:hint="XXXX XXXX XXXX XXXX"
                         android:imeOptions="actionNext"
                         android:inputType="number"
                         android:maxLength="23"
                         android:singleLine="true"
                         android:textColor="#333333"
+                        android:textColorHint="#999999"
                         android:textSize="16dp"
                         tools:ignore="Deprecated,RtlHardcoded,TextFields" />
+
                 </LinearLayout>
 
                 <View
@@ -175,11 +178,13 @@
                         android:layout_marginLeft="5dp"
                         android:layout_weight="2.0"
                         android:background="@null"
+                        android:hint="MM/YYYY"
                         android:imeOptions="actionNext"
                         android:inputType="number"
                         android:maxLength="7"
                         android:singleLine="true"
                         android:textColor="#333333"
+                        android:textColorHint="#999999"
                         android:textSize="16dp"
                         tools:ignore="Deprecated,RtlHardcoded,TextFields" />
                 </LinearLayout>
@@ -192,8 +197,10 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:padding="15dp"
+                    android:layout_height="46dp"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="15dp"
+                    android:paddingRight="15px"
                     tools:ignore="PxUsage">
 
                     <TextView
@@ -205,20 +212,36 @@
                         android:textSize="16dp"
                         tools:ignore="HardcodedText" />
 
-                    <EditText
-                        android:id="@+id/cvcEditText"
+                    <RelativeLayout
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:layout_weight="2.0"
-                        android:background="@null"
-                        android:inputType="number"
-                        android:maxLength="4"
-                        android:singleLine="true"
-                        android:textColor="#333333"
-                        android:textSize="16dp"
-                        tools:ignore="Deprecated,RtlHardcoded,TextFields" />
+                        android:layout_height="match_parent"
+                        android:layout_weight="2.0">
+
+                        <EditText
+                            android:id="@+id/cvcEditText"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="5dp"
+                            android:background="@null"
+                            android:inputType="number"
+                            android:maxLength="4"
+                            android:singleLine="true"
+                            android:textColor="#333333"
+                            android:textSize="16dp"
+                            tools:ignore="Deprecated,RtlHardcoded,TextFields" />
+
+                        <TextView
+                            android:id="@+id/cvcEditText_hint"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical"
+                            android:text="CVC显示位置在信用卡背面，签名处末尾的顶端以斜体字显示。"
+                            android:textColor="#999999"
+                            android:textSize="12dp" />
+                    </RelativeLayout>
+
                 </LinearLayout>
+
                 <!--<TextView-->
                 <!--android:id="@+id/textSecure"-->
                 <!--android:layout_width="wrap_content"-->

@@ -57,5 +57,11 @@
         <item name="android:windowExitAnimation">@anim/dialog_exit_anim</item>
     </style>
 
+    <style name="BaseBtn" parent="@style/Widget.AppCompat.Button.Borderless">
+        <item name="android:text">test</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
 
 </resources>
