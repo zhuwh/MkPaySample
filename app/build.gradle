@@ -29,7 +29,8 @@ dependencies {
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     testCompile 'junit:junit:4.12'
     compile 'com.jakewharton.timber:timber:4.5.1'
-    //    compile 'com.mark.app:mkpay-core:1.0.+'
+        compile 'com.mark.app:mkpay-core:1.0.4'
+        compile 'com.mark.app:mkpay-ipaynow:1.0.+'
     //    compile 'com.mark.app:mkpay-alipay:1.0.+'
     //    compile 'com.mark.app:mkpay-wechat:1.0.+'
     //    compile 'com.mark.app:mkpay-worldpay:1.0.2'
@@ -38,7 +39,7 @@ dependencies {
     compile 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
     compile 'io.reactivex.rxjava2:rxjava:2.1.2'
     compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
-    compile project(':mkpaycore')
+//    compile project(':mkpaycore')
     //    compile project(':mkpayalipay')
-    compile project(':mkipnpay')
+//    compile project(':mkipnpay')
 }
