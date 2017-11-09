@@ -9,9 +9,11 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/mkipnpay" />
             <option value="$PROJECT_DIR$/mkpayalipay" />
             <option value="$PROJECT_DIR$/mkpaycore" />
             <option value="$PROJECT_DIR$/mkpaywechat" />
+            <option value="$PROJECT_DIR$/mkworldpay" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

@@ -1,4 +1,5 @@
 apply plugin: 'com.android.library'
+apply plugin: 'maven'
 
 android {
     compileSdkVersion 26
@@ -29,4 +30,39 @@ dependencies {
     compile 'com.android.support:appcompat-v7:26.+'
     testCompile 'junit:junit:4.12'
     compile 'com.jakewharton.timber:timber:+'
+}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+//            //远程maven
+            repository(url: 'http://106.14.187.190:8081/nexus/content/repositories/releases/'){
+                authentication(userName: 'mark', password:'mark123')
+            }
+////            本地maven
+//            repository(url: 'file:///Users/zhuwh/DevTools/maven/Android/repo')
+            pom.project {
+                name 'mkpaycore'
+                groupId 'com.mark.app'
+                artifactId 'mkpay-core'
+                version '1.0.4'
+                packaging 'jar'
+
+                licenses {
+                    license {
+                        name 'The MIT License'
+                        url 'https://raw.githubusercontent.com/hammercui/android-advance-cn/master/LICENSE'
+                        distribution 'repo'
+                    }
+                }
+                developers {
+                    developer {
+                        id 'mark'
+                        name 'mark'
+                        email 'zhuwenhui5566@163.com'
+                    }
+                }
+            }
+        }
+    }
 }

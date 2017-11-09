@@ -1,0 +1,72 @@
+apply plugin: 'com.android.library'
+apply plugin: 'maven'
+
+android {
+    compileSdkVersion 26
+    buildToolsVersion "26.0.2"
+
+
+    defaultConfig {
+        minSdkVersion 19
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile 'com.android.support:appcompat-v7:26.1.0'
+    testCompile 'junit:junit:4.12'
+    androidTestCompile('com.android.support.test.espresso:espresso-core:3.0.1', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile 'com.mark.app:mkpay-core:1.0.+'
+    compile files('libs/ipaynow_plugin_phone_crossalipay_v1.0.1.jar')
+}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+//            //远程maven
+            repository(url: 'http://106.14.187.190:8081/nexus/content/repositories/releases/'){
+                authentication(userName: 'mark', password:'mark123')
+            }
+////            本地maven
+//            repository(url: 'file:///Users/zhuwh/DevTools/maven/Android/repo')
+            pom.project {
+                name 'mkpaycore'
+                groupId 'com.mark.app'
+                artifactId 'mkpay-ipaynow'
+                version '1.0.1'
+                packaging 'jar'
+
+                licenses {
+                    license {
+                        name 'The MIT License'
+                        url 'https://raw.githubusercontent.com/hammercui/android-advance-cn/master/LICENSE'
+                        distribution 'repo'
+                    }
+                }
+                developers {
+                    developer {
+                        id 'mark'
+                        name 'mark'
+                        email 'zhuwenhui5566@163.com'
+                    }
+                }
+            }
+        }
+    }
+}
