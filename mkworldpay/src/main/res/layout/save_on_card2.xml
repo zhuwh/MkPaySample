@@ -32,11 +32,12 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:fillViewport="true">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical">
 
 
@@ -47,187 +48,100 @@
                 android:orientation="vertical">
 
                 <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:padding="15dp"
+                    style="@style/item_layout"
                     tools:ignore="PxUsage">
 
                     <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1.0"
+                        style="@style/item_tv_left"
                         android:text="First Name:"
-                        android:textColor="#333333"
-                        android:textSize="16dp"
                         tools:ignore="HardcodedText" />
 
                     <EditText
                         android:id="@+id/firstNameEditText"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:layout_weight="2.0"
-                        android:background="@null"
-                        android:imeOptions="actionNext"
-                        android:singleLine="true"
-                        android:textColor="#333333"
-                        android:textSize="16dp"
+                        style="@style/item_et_right"
                         tools:ignore="Deprecated,RtlHardcoded,TextFields" />
                 </LinearLayout>
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginLeft="10dp"
-                    android:background="#fff0f0f0" />
+                <View style="@style/item_view_line" />
 
                 <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:padding="15dp"
+                    style="@style/item_layout"
                     tools:ignore="PxUsage">
 
                     <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1.0"
+                        style="@style/item_tv_left"
                         android:text="Last Name:"
-                        android:textColor="#333333"
-                        android:textSize="16dp"
                         tools:ignore="HardcodedText" />
 
                     <EditText
                         android:id="@+id/lastNameEditText"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10px"
-                        android:layout_weight="2.0"
-                        android:background="@null"
-                        android:imeOptions="actionNext"
-                        android:singleLine="true"
-                        android:textColor="#333333"
-                        android:textSize="16dp"
+                        style="@style/item_et_right"
                         tools:ignore="Deprecated,RtlHardcoded,TextFields" />
                 </LinearLayout>
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginLeft="10dp"
-                    android:background="#fff0f0f0" />
+                <View style="@style/item_view_line" />
 
                 <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:padding="15dp"
+                    style="@style/item_layout"
                     tools:ignore="PxUsage">
 
                     <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1.0"
+                        style="@style/item_tv_left"
                         android:text="Card Number:"
-                        android:textColor="#333333"
-                        android:textSize="16dp"
                         tools:ignore="HardcodedText" />
 
                     <EditText
                         android:id="@+id/cardNumberEditText"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:layout_weight="2.0"
-                        android:background="@null"
+                        style="@style/item_et_right"
                         android:hint="XXXX XXXX XXXX XXXX"
-                        android:imeOptions="actionNext"
                         android:inputType="number"
                         android:maxLength="23"
-                        android:singleLine="true"
-                        android:textColor="#333333"
-                        android:textColorHint="#999999"
-                        android:textSize="16dp"
                         tools:ignore="Deprecated,RtlHardcoded,TextFields" />
 
                 </LinearLayout>
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginLeft="10dp"
-                    android:background="#fff0f0f0" />
+                <View style="@style/item_view_line" />
 
                 <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:padding="15dp"
+                    style="@style/item_layout"
                     tools:ignore="PxUsage">
 
                     <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1.0"
+                        style="@style/item_tv_left"
                         android:text="Expiry Time:"
-                        android:textColor="#333333"
-                        android:textSize="16dp"
                         tools:ignore="HardcodedText" />
 
                     <EditText
                         android:id="@+id/expiryEditText"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:layout_weight="2.0"
-                        android:background="@null"
+                        style="@style/item_et_right"
                         android:hint="MM/YYYY"
-                        android:imeOptions="actionNext"
                         android:inputType="number"
                         android:maxLength="7"
-                        android:singleLine="true"
-                        android:textColor="#333333"
-                        android:textColorHint="#999999"
-                        android:textSize="16dp"
                         tools:ignore="Deprecated,RtlHardcoded,TextFields" />
                 </LinearLayout>
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginLeft="10dp"
-                    android:background="#fff0f0f0" />
+                <View style="@style/item_view_line" />
 
                 <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="46dp"
-                    android:gravity="center_vertical"
-                    android:paddingLeft="15dp"
-                    android:paddingRight="15px"
+                    style="@style/item_layout"
                     tools:ignore="PxUsage">
 
                     <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1.0"
+                        style="@style/item_tv_left"
                         android:text="CVC:"
-                        android:textColor="#333333"
-                        android:textSize="16dp"
                         tools:ignore="HardcodedText" />
 
                     <RelativeLayout
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_weight="2.0">
+                        android:layout_weight="2">
 
                         <EditText
                             android:id="@+id/cvcEditText"
+                            style="@style/item_et_right"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_marginLeft="5dp"
-                            android:background="@null"
                             android:inputType="number"
                             android:maxLength="4"
-                            android:singleLine="true"
-                            android:textColor="#333333"
-                            android:textSize="16dp"
                             tools:ignore="Deprecated,RtlHardcoded,TextFields" />
 
                         <TextView
@@ -242,48 +156,7 @@
 
                 </LinearLayout>
 
-                <!--<TextView-->
-                <!--android:id="@+id/textSecure"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:text="@string/textSecure"-->
-                <!--android:visibility="gone"-->
-                <!--/>-->
-
-                <!--<ImageView-->
-                <!--android:id="@+id/secureButton"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_gravity="center"-->
-                <!--android:scaleType="center"-->
-                <!--android:src="@drawable/padlock_black_medium"-->
-                <!--android:visibility="gone"-->
-                <!--/>-->
             </LinearLayout>
-
-
-            <!--<LinearLayout-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:orientation="horizontal">-->
-
-            <!--&lt;!&ndash;<EditText&ndash;&gt;-->
-            <!--&lt;!&ndash;android:id="@+id/expiryEditText"&ndash;&gt;-->
-            <!--&lt;!&ndash;android:layout_width="0dp"&ndash;&gt;-->
-            <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
-            <!--&lt;!&ndash;android:layout_weight="1"&ndash;&gt;-->
-            <!--&lt;!&ndash;android:hint="@string/expiryEdit"&ndash;&gt;-->
-            <!--&lt;!&ndash;android:inputType="number"&ndash;&gt;-->
-            <!--&lt;!&ndash;android:maxLength="7" />&ndash;&gt;-->
-
-            <!--<EditText-->
-            <!--android:id="@+id/cvcEditText"-->
-            <!--android:layout_width="0dp"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_weight="1"-->
-            <!--android:hint="@string/cvcEdit"-->
-            <!--android:inputType="number"-->
-            <!--android:maxLength="4" />-->
 
             <Button
                 android:id="@+id/btn_save"
