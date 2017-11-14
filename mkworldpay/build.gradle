@@ -48,7 +48,7 @@ uploadArchives {
                 name 'mkworldpay'
                 groupId 'com.mark.app'
                 artifactId 'mkpay-worldpay'
-                version '1.0.7'
+                version '1.0.8'
                 packaging 'jar'
 
                 licenses {

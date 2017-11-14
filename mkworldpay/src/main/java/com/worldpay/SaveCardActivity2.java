@@ -9,8 +9,10 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.InputType;
 import android.text.TextWatcher;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
@@ -19,8 +21,10 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -423,27 +427,11 @@ public class SaveCardActivity2 extends Activity implements OnClickListener {
         cNumberText = (EditText) findViewById(R.id.cardNumberEditText);
         expiryText = (EditText) findViewById(R.id.expiryEditText);
         cvcText = (EditText) findViewById(cvcEditText);
+        //初始化输入框设置
+        initEt();
+        //初始化遮罩
+        initMask();
 
-        //设置CVC多行的提示文案--->ljju
-        final View cvcTextHint = findViewById(R.id.cvcEditText_hint);
-        cvcText.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (cvcTextHint != null) {
-                    cvcTextHint.setVisibility(s.length() > 0 ? View.GONE : View.VISIBLE);
-                }
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
 
         findViewById(R.id.btn_left).setOnClickListener(this);
         findViewById(R.id.btn_save).setOnClickListener(this);
@@ -478,6 +466,74 @@ public class SaveCardActivity2 extends Activity implements OnClickListener {
         cNumberText.setNextFocusDownId(R.id.expiryEditText);
         expiryText.setNextFocusDownId(cvcEditText);
 
+    }
+
+    /**
+     * 初始化输入框设置
+     */
+    private void initEt() {
+        //设置CVC多行的提示文案--->ljju
+        cvcText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                View cvcTextHint = findViewById(R.id.cvcEditText_hint);
+                if (cvcTextHint != null) {
+                    cvcTextHint.setVisibility(s.length() > 0 ? View.GONE : View.VISIBLE);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        //设置名称输入框键盘类型：英文键盘
+        setEtEnglish(fNameText);
+        setEtEnglish(lNameText);
+    }
+
+    /**
+     * 设置默认英文键盘
+     *
+     * @param et
+     */
+    private void setEtEnglish(EditText et) {
+        if (et != null) {
+            //将输入法切换到英文
+            et.setInputType(InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS);
+            //将输入法弹出的右下角的按钮改为完成，不改的话会是下一步。
+            et.setImeOptions(EditorInfo.IME_ACTION_DONE);
+        }
+    }
+
+    /**
+     * 初始化遮罩
+     */
+    private void initMask() {
+        ProgressBar pb = (ProgressBar) findViewById(R.id.pb_loading);
+        if (Build.VERSION.SDK_INT > 22) {
+            //6.0以上
+            Drawable drawable = getDrawable(R.drawable.pb_loading_after6);
+            pb.setIndeterminateDrawable(drawable);
+        }
+        showMask(false);
+    }
+
+    /**
+     * 设置遮罩是否显示
+     *
+     * @param isShow
+     */
+    private void showMask(boolean isShow) {
+        View view = findViewById(R.id.layout_mask);
+        if (view != null) {
+            view.setVisibility(isShow ? View.VISIBLE : View.GONE);
+        }
     }
 
     @Override
@@ -595,32 +651,34 @@ public class SaveCardActivity2 extends Activity implements OnClickListener {
             }
 
         } else {
-
             AsyncTask<Void, Void, HttpServerResponse> createTokenAsyncTask = worldPay
                     .createTokenAsyncTask(this, card, new WorldPayResponse() {
 
                         @Override
                         public void onSuccess(ResponseCard responseCard) {
                             DebugLogger.d("# onSuccess : " + responseCard);
+                            showMask(false);
                             finishActivity(RESULT_RESPONSE_CARD, EXTRA_RESPONSE_CARD, responseCard);
                         }
 
                         @Override
                         public void onResponseError(ResponseError responseError) {
                             DebugLogger.d("# onResponseError: " + responseError.getMessage());
+                            showMask(false);
                             finishActivity(RESULT_RESPONSE_ERROR, EXTRA_RESPONSE_ERROR, responseError);
                         }
 
                         @Override
                         public void onError(WorldPayError worldPayError) {
                             DebugLogger.d("# onError: " + worldPayError.getMessage());
-
+                            showMask(false);
                             finishActivity(RESULT_WORLDPAY_ERROR, EXTRA_RESPONSE_WORLDPAY_ERROR, worldPayError);
                         }
 
                     });
 
             if (createTokenAsyncTask != null) {
+                showMask(true);
                 createTokenAsyncTask.execute();
             }
         }
