@@ -35,7 +35,7 @@ public interface PdMService {
         }
     }
 
-    String baseUrl = "http://192.168.0.9:8080";
+    String baseUrl = "http://192.168.0.14:8080";
 
 
 

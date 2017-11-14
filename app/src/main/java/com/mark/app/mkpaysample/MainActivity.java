@@ -1,7 +1,11 @@
 package com.mark.app.mkpaysample;
 
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.util.ArrayMap;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Toast;
@@ -9,6 +13,13 @@ import android.widget.Toast;
 import com.mark.app.mkpay.core.MkPay;
 import com.mark.app.mkpay.core.MkPayCallback;
 import com.mark.app.mkpay.core.MkPayResult;
+import com.worldpay.Card;
+import com.worldpay.ResponseCard;
+import com.worldpay.ResponseError;
+import com.worldpay.SaveCardActivity2;
+import com.worldpay.WorldPay;
+import com.worldpay.WorldPayError;
+import com.worldpay.WorldPayResponseReusableToken;
 
 import org.json.JSONObject;
 
@@ -19,24 +30,20 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
+import timber.log.Timber;
 
-//import com.worldpay.Card;
-//import com.worldpay.ResponseCard;
-//import com.worldpay.ResponseError;
-//import com.worldpay.WorldPay;
-//import com.worldpay.WorldPayError;
-
-//import static com.worldpay.SaveCardActivity.EXTRA_RESPONSE_CARD;
-//import static com.worldpay.SaveCardActivity.EXTRA_RESPONSE_ERROR;
-//import static com.worldpay.SaveCardActivity.EXTRA_RESPONSE_WORLDPAY_ERROR;
-//import static com.worldpay.SaveCardActivity.RESULT_RESPONSE_CARD;
-//import static com.worldpay.SaveCardActivity.RESULT_RESPONSE_ERROR;
-//import static com.worldpay.SaveCardActivity.RESULT_WORLDPAY_ERROR;
+import static com.worldpay.SaveCardActivity2.EXTRA_CUSTOMIZE_THEME;
+import static com.worldpay.SaveCardActivity2.EXTRA_RESPONSE_CARD;
+import static com.worldpay.SaveCardActivity2.EXTRA_RESPONSE_ERROR;
+import static com.worldpay.SaveCardActivity2.EXTRA_RESPONSE_WORLDPAY_ERROR;
+import static com.worldpay.SaveCardActivity2.RESULT_RESPONSE_CARD;
+import static com.worldpay.SaveCardActivity2.RESULT_RESPONSE_ERROR;
+import static com.worldpay.SaveCardActivity2.RESULT_WORLDPAY_ERROR;
 
 public class MainActivity extends AppCompatActivity {
 
     MkPay pay ;
-//    WorldPay worldPay;
+    WorldPay worldPay;
 
     private static final String clientKey = "T_C_91c8096c-b279-46b3-8076-988fa9c3ea9e";
 
@@ -47,10 +54,10 @@ public class MainActivity extends AppCompatActivity {
         pay = MkPay.getInstance(this);
         pay.init(new int[]{MkPay.PAY_TYPE_IPAYNOW,MkPay.PAY_TYPE_WXPAY});
 
-//        worldPay = WorldPay.getInstance();
-//        worldPay.setClientKey(clientKey);
-//        worldPay.setReusable(true);
-//        Card.setValidationType(Card.VALIDATION_TYPE_BASIC);
+        worldPay = WorldPay.getInstance();
+        worldPay.setClientKey(clientKey);
+        worldPay.setReusable(true);
+        Card.setValidationType(Card.VALIDATION_TYPE_BASIC);
     }
 
    public void alipay(View v){
@@ -148,8 +155,8 @@ public class MainActivity extends AppCompatActivity {
         App.get().getPdmService()
                 .getIpnInfo("1")
                 .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<MKBaseResultEntity<String>>() {
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .subscribe(new Observer<MKBaseResultEntity<String>>() {
                     @Override
                     public void onSubscribe(@NonNull Disposable d) {
 
@@ -201,144 +208,144 @@ public class MainActivity extends AppCompatActivity {
 
     public void addCard(View v){
 
-//        final Intent intent = new Intent(this, SaveCardActivity2.class);
-//        intent.putExtra(EXTRA_CUSTOMIZE_THEME, Color.parseColor("#ff0000"));
-//        startActivityForResult(intent, SAVE_CARD_REQUEST_CODE);
+        final Intent intent = new Intent(this, SaveCardActivity2.class);
+        intent.putExtra(EXTRA_CUSTOMIZE_THEME, Color.parseColor("#ff0000"));
+        startActivityForResult(intent, SAVE_CARD_REQUEST_CODE);
 
     }
 
     public void worldPay(View v){
 
-//        final ResponseCard selectedCard = card;
-//        SaveCardActivity2
-//                .requestCVC(
-//                        this,
-//                        getLayoutInflater(),
-//                        selectedCard.getToken(),
-//                        clientKey,
-//                        new WorldPayResponseReusableToken() {
-//                            @Override
-//                            public void onSuccess() {
-//                                //请求服务器支付
-//                                App.get().getPdmService()
-//                                        .worldPay(selectedCard.getToken())
-//                                        .subscribeOn(Schedulers.io())
-//                                        .observeOn(AndroidSchedulers.mainThread())
-//                                        .subscribe(new Observer<MKBaseResultEntity<String>>() {
-//                                            @Override
-//                                            public void onSubscribe(@NonNull Disposable d) {
-//
-//                                            }
-//
-//                                            @Override
-//                                            public void onNext(@NonNull MKBaseResultEntity<String> baseResultEntity) {
-//                                               if (baseResultEntity.getResultCode()==1000){
-//                                                   Toast.makeText(MainActivity.this,"支付成功",Toast.LENGTH_SHORT).show();
-//                                               }else{
-//                                                   Toast.makeText(MainActivity.this,"支付失败",Toast.LENGTH_SHORT).show();
-//                                               }
-//
-//                                            }
-//
-//                                            @Override
-//                                            public void onError(@NonNull Throwable e) {
-//                                                Toast.makeText(MainActivity.this,"支付失败",Toast.LENGTH_SHORT).show();
-//                                            }
-//
-//                                            @Override
-//                                            public void onComplete() {
-//
-//                                            }
-//                                        });
-////                                if (threeDsEnabled) {
-////                                    final OrderDetails orderDetails = new OrderDetails(
-////                                            deliveryAddress.getText().toString(),
-////                                            cityEditText.getText().toString(),
-////                                            postcodeEditText.getText().toString(),
-////                                            getPriceFromForm());
-////                                    final Intent orderIntent = new Intent(OrderDetailsActivity.this, ThreeDsOrderActivity.class);
-////                                    orderIntent.putExtra(EXTRA_ORDER_DETAIL, orderDetails);
-////                                    orderIntent.putExtra(ThreeDsOrderActivity.EXTRA_CARD_TOKEN, selectedCard.getToken());
-////                                    startActivityForResult(orderIntent, THREE_DS_REQUEST_CODE);
-////                                } else {
-////                                    // At this point you can create an Order with the
-////                                    // new token via the WorldPay Orders API.
-////                                    new AlertDialog.Builder(OrderDetailsActivity.this)
-////                                            .setTitle(R.string.confirm_purchase)
-////                                            .setMessage(R.string.confirm_purchase_message)
-////                                            .setPositiveButton(R.string.ok,
-////                                                    new DialogInterface.OnClickListener() {
-////                                                        @Override
-////                                                        public void onClick(final DialogInterface dialog, final int which) {
-////                                                            startActivity(new Intent(getApplicationContext(), OrderConfirmationActivity.class));
-////                                                        }
-////                                                    }).show();
-////                                }
-//
-//
-//                            }
-//
-//                            @Override
-//                            public void onResponseError(final ResponseError responseError) {
-//                                showDialog("Response error", responseError.getMessage());
-//                            }
-//
-//                            @Override
-//                            public void onError(final WorldPayError worldPayError) {
-//                                showDialog("world pay", worldPayError.getMessage());
-//                            }
-//                        });
+        final ResponseCard selectedCard = card;
+        SaveCardActivity2
+                .requestCVC(
+                        this,
+                        getLayoutInflater(),
+                        selectedCard.getToken(),
+                        clientKey,
+                        new WorldPayResponseReusableToken() {
+                            @Override
+                            public void onSuccess() {
+                                //请求服务器支付
+                                App.get().getPdmService()
+                                        .worldPay(selectedCard.getToken())
+                                        .subscribeOn(Schedulers.io())
+                                        .observeOn(AndroidSchedulers.mainThread())
+                                        .subscribe(new Observer<MKBaseResultEntity<String>>() {
+                                            @Override
+                                            public void onSubscribe(@NonNull Disposable d) {
+
+                                            }
+
+                                            @Override
+                                            public void onNext(@NonNull MKBaseResultEntity<String> baseResultEntity) {
+                                               if (baseResultEntity.getResultCode()==1000){
+                                                   Toast.makeText(MainActivity.this,"支付成功",Toast.LENGTH_SHORT).show();
+                                               }else{
+                                                   Toast.makeText(MainActivity.this,"支付失败",Toast.LENGTH_SHORT).show();
+                                               }
+
+                                            }
+
+                                            @Override
+                                            public void onError(@NonNull Throwable e) {
+                                                Toast.makeText(MainActivity.this,"支付失败",Toast.LENGTH_SHORT).show();
+                                            }
+
+                                            @Override
+                                            public void onComplete() {
+
+                                            }
+                                        });
+//                                if (threeDsEnabled) {
+//                                    final OrderDetails orderDetails = new OrderDetails(
+//                                            deliveryAddress.getText().toString(),
+//                                            cityEditText.getText().toString(),
+//                                            postcodeEditText.getText().toString(),
+//                                            getPriceFromForm());
+//                                    final Intent orderIntent = new Intent(OrderDetailsActivity.this, ThreeDsOrderActivity.class);
+//                                    orderIntent.putExtra(EXTRA_ORDER_DETAIL, orderDetails);
+//                                    orderIntent.putExtra(ThreeDsOrderActivity.EXTRA_CARD_TOKEN, selectedCard.getToken());
+//                                    startActivityForResult(orderIntent, THREE_DS_REQUEST_CODE);
+//                                } else {
+//                                    // At this point you can create an Order with the
+//                                    // new token via the WorldPay Orders API.
+//                                    new AlertDialog.Builder(OrderDetailsActivity.this)
+//                                            .setTitle(R.string.confirm_purchase)
+//                                            .setMessage(R.string.confirm_purchase_message)
+//                                            .setPositiveButton(R.string.ok,
+//                                                    new DialogInterface.OnClickListener() {
+//                                                        @Override
+//                                                        public void onClick(final DialogInterface dialog, final int which) {
+//                                                            startActivity(new Intent(getApplicationContext(), OrderConfirmationActivity.class));
+//                                                        }
+//                                                    }).show();
+//                                }
+
+
+                            }
+
+                            @Override
+                            public void onResponseError(final ResponseError responseError) {
+                                showDialog("Response error", responseError.getMessage());
+                            }
+
+                            @Override
+                            public void onError(final WorldPayError worldPayError) {
+                                showDialog("world pay", worldPayError.getMessage());
+                            }
+                        });
     }
 
-//    @Override
-//    protected void onActivityResult(final int requestCode, final int resultCode,
-//                                    final Intent data) {
-//        if (requestCode == SAVE_CARD_REQUEST_CODE) {
-//            handleCardTokenizationResult(resultCode, data);
-//        }
-//    }
+    @Override
+    protected void onActivityResult(final int requestCode, final int resultCode,
+                                    final Intent data) {
+        if (requestCode == SAVE_CARD_REQUEST_CODE) {
+            handleCardTokenizationResult(resultCode, data);
+        }
+    }
 
-//    ResponseCard card ;
-//
-//    private void handleCardTokenizationResult(final int resultCode, final Intent data) {
-//        switch (resultCode) {
-//            case RESULT_RESPONSE_CARD:
-//                final ResponseCard responseCard =
-//                        (ResponseCard) data.getSerializableExtra(EXTRA_RESPONSE_CARD);
-//                if (responseCard != null) {
-//                    //增加卡成功
-//                    Timber.d(responseCard.toString());
-//                    card = responseCard;
-////                    savedCards.add(responseCard);
-////                    cardRepository.save(savedCards, OrderDetailsActivity.this);
-////                    refreshStoredCardsPanel();
-//                }
-//                break;
-//            case RESULT_RESPONSE_ERROR:
-//                final ResponseError rError = (ResponseError) data.getSerializableExtra(EXTRA_RESPONSE_ERROR);
-//                if (rError != null) {
-//                    showDialog("Response error", rError.getMessage());
-//                }
-//                break;
-//            case RESULT_WORLDPAY_ERROR:
-//                final WorldPayError wError = (WorldPayError) data
-//                        .getSerializableExtra(EXTRA_RESPONSE_WORLDPAY_ERROR);
-//                if (wError != null) {
-//                    showDialog("WorldPay error", wError.getMessage());
-//                }
-//                break;
-//        }
-//    }
+    ResponseCard card ;
 
-//    private void showDialog(final String title, final String message) {
-//        new AlertDialog.Builder(this)
-//                .setTitle(title)
-//                .setMessage(message)
-//                .setNeutralButton(R.string.ok, new DialogInterface.OnClickListener() {
-//                    @Override
-//                    public void onClick(DialogInterface dialog, int which) {
-//
-//                    }
-//                }).show();
-//    }
+    private void handleCardTokenizationResult(final int resultCode, final Intent data) {
+        switch (resultCode) {
+            case RESULT_RESPONSE_CARD:
+                final ResponseCard responseCard =
+                        (ResponseCard) data.getSerializableExtra(EXTRA_RESPONSE_CARD);
+                if (responseCard != null) {
+                    //增加卡成功
+                    Timber.d(responseCard.toString());
+                    card = responseCard;
+//                    savedCards.add(responseCard);
+//                    cardRepository.save(savedCards, OrderDetailsActivity.this);
+//                    refreshStoredCardsPanel();
+                }
+                break;
+            case RESULT_RESPONSE_ERROR:
+                final ResponseError rError = (ResponseError) data.getSerializableExtra(EXTRA_RESPONSE_ERROR);
+                if (rError != null) {
+                    showDialog("Response error", rError.getMessage());
+                }
+                break;
+            case RESULT_WORLDPAY_ERROR:
+                final WorldPayError wError = (WorldPayError) data
+                        .getSerializableExtra(EXTRA_RESPONSE_WORLDPAY_ERROR);
+                if (wError != null) {
+                    showDialog("WorldPay error", wError.getMessage());
+                }
+                break;
+        }
+    }
+
+    private void showDialog(final String title, final String message) {
+        new AlertDialog.Builder(this)
+                .setTitle(title)
+                .setMessage(message)
+                .setNeutralButton(R.string.ok, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                }).show();
+    }
 }
