@@ -2,7 +2,6 @@ package com.mark.app.mkpay.ipaynow;
 
 import android.app.Activity;
 import android.content.Context;
-import android.widget.Toast;
 
 import com.ipaynow.alipay.plugin.api.CrossAliPayPlugin;
 import com.ipaynow.alipay.plugin.manager.route.dto.ResponseParams;
@@ -75,6 +74,6 @@ public class MKIpnPay implements MkPayInf<String>,ReceivePayResult {
                 mCallback.onPayResult(payResult);
             }
         }
-        Toast.makeText(context, temp.toString(), Toast.LENGTH_LONG).show();
+//        Toast.makeText(context, temp.toString(), Toast.LENGTH_LONG).show();
     }
 }
