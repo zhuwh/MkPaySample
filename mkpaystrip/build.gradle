@@ -1,0 +1,85 @@
+apply plugin: 'com.android.library'
+apply plugin: 'maven'
+
+android {
+    compileSdkVersion 26
+    buildToolsVersion "26.0.2"
+
+    defaultConfig {
+        minSdkVersion 19
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        manifestPlaceholders = [
+                MKPAY_KEY_STRIP: "\${MKPAY_KEY_STRIP}"//strip支付key
+        ]
+
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+configurations.all {
+    resolutionStrategy.eachDependency { DependencyResolveDetails details ->
+        def requested = details.requested
+        if (requested.group == 'com.android.support') {
+            if (!requested.name.startsWith("multidex")) {
+                details.useVersion '26.0.1'
+            }
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile 'com.mark.app:mkpay-core:1.0.+'
+    compile 'com.android.support:appcompat-v7:26+'
+    testCompile 'junit:junit:4.12'
+    compile 'com.stripe:stripe-android:5.1.0'
+}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            //远程maven
+            repository(url: 'http://106.14.187.190:8081/nexus/content/repositories/releases/') {
+                authentication(userName: 'mark', password: 'mark123')
+            }
+//            //本地maven
+//            repository(url: 'file:///Users/zhuwh/DevTools/maven/Android/repo')
+            pom.project {
+                name 'mkpaystrip'
+                groupId 'com.mark.app'
+                artifactId 'mkpay-strip'
+                version '1.0.0'
+//                packaging 'aar'
+                packaging 'jar'
+
+                licenses {
+                    license {
+                        name 'The MIT License'
+                        url 'https://raw.githubusercontent.com/hammercui/android-advance-cn/master/LICENSE'
+                        distribution 'repo'
+                    }
+                }
+                developers {
+                    developer {
+                        id 'mark'
+                        name 'mark'
+                        email 'zhuwenhui5566@163.com'
+                    }
+                }
+            }
+        }
+    }
+}

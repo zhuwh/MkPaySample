@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f6f6f6"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/titlebar_root"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="#289BF8">
+
+        <ImageView
+            android:id="@+id/titlebar_iv_return"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_centerVertical="true"
+            android:onClick="onClickReturn"
+            android:padding="14dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/strip_ic_wp_back" />
+
+        <TextView
+            android:id="@+id/titlebar_tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textColor="#FFFFFF"
+            android:textSize="16dp" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ffffff"
+        android:orientation="vertical">
+
+        <LinearLayout style="@style/StripMKPayItem">
+
+            <TextView
+                style="@style/StripMKPayItemTv"
+                android:text="卡号" />
+
+            <com.stripe.android.view.CardNumberEditText
+                android:id="@+id/et_card_number"
+                style="@style/StripMKPayItemEt"
+                android:accessibilityTraversalBefore="@+id/et_expiry_date"
+                android:background="@android:color/transparent"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:hint="请输入卡号"
+                android:inputType="number"
+                android:maxLength="19"
+                android:nextFocusDown="@+id/et_expiry_date"
+                android:nextFocusForward="@+id/et_expiry_date"
+                android:nextFocusRight="@+id/et_expiry_date"
+                tools:ignore="UnusedAttribute"
+                tools:importantForAccessibility="yes" />
+
+        </LinearLayout>
+
+        <View style="@style/StripMKPayLine.Horizontal" />
+
+        <LinearLayout style="@style/StripMKPayItem">
+
+            <TextView
+                style="@style/StripMKPayItemTv"
+                android:text="到期时间" />
+
+            <com.stripe.android.view.ExpiryDateEditText
+                android:id="@+id/et_expiry_date"
+                style="@style/StripMKPayItemEt"
+                android:layout_gravity="left"
+                android:accessibilityTraversalAfter="@+id/et_expiry_date"
+                android:accessibilityTraversalBefore="@id/et_card_number"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:hint="请输入到期时间（月/年-11/18）"
+                android:inputType="date"
+                android:maxLength="5"
+                android:nextFocusDown="@+id/et_cvc_number"
+                android:nextFocusForward="@+id/et_cvc_number"
+                android:nextFocusLeft="@id/et_card_number"
+                android:nextFocusRight="@+id/et_cvc_number"
+                android:nextFocusUp="@id/et_card_number"
+                android:visibility="visible"
+                tools:ignore="UnusedAttribute"
+                tools:importantForAccessibility="yes" />
+
+        </LinearLayout>
+
+        <View style="@style/StripMKPayLine.Horizontal" />
+
+        <LinearLayout style="@style/StripMKPayItem">
+
+            <TextView
+                style="@style/StripMKPayItemTv"
+                android:text="CVC" />
+
+            <com.stripe.android.view.StripeEditText
+                android:id="@+id/et_cvc_number"
+                style="@style/StripMKPayItemEt"
+                android:accessibilityTraversalAfter="@+id/et_expiry_date"
+                android:hint="请输入CVC"
+                android:inputType="number"
+                android:maxLength="4"
+                android:nextFocusLeft="@id/et_expiry_date"
+                android:nextFocusUp="@id/et_expiry_date"
+                tools:ignore="UnusedAttribute"
+                tools:importantForAccessibility="yes" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/strip_btn_finish"
+        style="@style/StripMKPayBtn.Blue"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="35dp"
+        android:onClick="commit"
+        android:text="@string/strip_mkpay_btn_finish"
+        android:textSize="16dp" />
+
+</LinearLayout>

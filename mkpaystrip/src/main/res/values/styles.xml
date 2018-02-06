@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="StripTheme" parent="Theme.AppCompat.Light.NoActionBar">
+
+    </style>
+
+    <style name="StripTheme.NoActionbar" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowActionBar">false</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+    <style name="StripTheme.AppTheme" parent="StripTheme.NoActionbar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">#289af8</item>
+        <item name="colorPrimaryDark">#289af8</item>
+        <item name="colorAccent">#289af8</item>
+    </style>
+
+    <style name="StripMKPayBtn" parent="@style/Widget.AppCompat.Button.Borderless">
+        <item name="android:text">test</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="StripMKPayBtn.Blue">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">80px</item>
+        <item name="android:layout_marginLeft">30px</item>
+        <item name="android:layout_marginRight">30px</item>
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:textSize">34px</item>
+        <item name="android:background">@drawable/strip_select_btn_blue</item>
+    </style>
+
+    <style name="StripMKPayLine">
+        <item name="android:background">#fff0f0f0</item>
+    </style>
+
+    <style name="StripMKPayLine.Horizontal">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item>
+    </style>
+
+    <style name="StripMKPayItem">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:orientation">horizontal</item>
+    </style>
+
+    <style name="StripMKPayItemTv">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:textSize">14dp</item>
+        <item name="android:textColor">#333333</item>
+        <item name="android:minWidth">80dp</item>
+        <item name="android:paddingLeft">10dp</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+
+    <style name="StripMKPayItemEt">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:textSize">14dp</item>
+        <item name="android:textColor">#8c8c8c</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textColorHint">#8c8c8c</item>
+        <item name="android:hint">测试</item>
+        <item name="android:paddingLeft">10dp</item>
+        <item name="android:paddingRight">10dp</item>
+        <item name="android:background">@null</item>
+    </style>
+</resources>
