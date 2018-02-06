@@ -45,7 +45,7 @@ uploadArchives {
                 name 'mkpaycore'
                 groupId 'com.mark.app'
                 artifactId 'mkpay-core'
-                version '1.0.4'
+                version '1.0.5'
                 packaging 'jar'
 
                 licenses {

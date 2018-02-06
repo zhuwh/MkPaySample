@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="MKPay"></style>
+
+    <style name="MKPay.DialogAnim">
+        <item name="android:windowEnterAnimation">@anim/mkpay_core_dialog_push_in_alpha</item>
+        <item name="android:windowExitAnimation">@anim/mkpay_core_dialog_push_out_alpha</item>
+    </style>
+</resources>

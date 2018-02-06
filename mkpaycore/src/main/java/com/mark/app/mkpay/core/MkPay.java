@@ -54,11 +54,12 @@ public abstract class MkPay {
         mContext = context.getApplicationContext();
     }
 
-    public static MkPay getInstance(Context context){
-        if (s_instance==null){
-            synchronized (MkPay.class){
-                if (s_instance==null){
-                    s_instance = new MkPay(context) {};
+    public static MkPay getInstance(Context context) {
+        if (s_instance == null) {
+            synchronized (MkPay.class) {
+                if (s_instance == null) {
+                    s_instance = new MkPay(context) {
+                    };
                 }
             }
         }
@@ -67,10 +68,11 @@ public abstract class MkPay {
 
     /**
      * 初始化支付通道，只能初始化一次
+     *
      * @param payTypes
      */
     public void init(@MkPayType int[] payTypes) {
-        if (!isInit){
+        if (!isInit) {
             if (payTypes != null) {
                 for (int payType :
                         payTypes) {
