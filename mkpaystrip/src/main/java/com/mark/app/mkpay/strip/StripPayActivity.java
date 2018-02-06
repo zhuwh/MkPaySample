@@ -86,6 +86,12 @@ public class StripPayActivity extends AppCompatActivity {
         mStripEdit.setErrorColor(0xffff0000);
     }
 
+    @Override
+    public void onBackPressed() {
+//        super.onBackPressed();
+        onClickCancel();
+    }
+
     private Card getCard() {
         String cardNumber = mCardNum.getCardNumber();
         int[] cardDate = mExpiryDate.getValidDateFields();
@@ -110,7 +116,20 @@ public class StripPayActivity extends AppCompatActivity {
             if (card == null) {
                 toast("请检查您填写的信息");
             } else {
-                if (card.validateCard()) {
+                if (!card.validateNumber()) {
+                    //卡号校验不通过
+                    toast("卡号校验不通过");
+                    log("卡号校验不通过");
+                } else if (!card.validateExpiryDate() || !card.validateExpMonth()) {
+                    //时间校验不通过
+                    toast("到期时间校验不通过");
+                    log("到期时间校验不通过");
+                } else if (!card.validateCVC()) {
+                    toast("CVC校验不通过");
+                    log("CVC校验不通过");
+                } else if (!card.validateCard()) {
+                    toast("卡信息校验不通过");
+                } else {
                     String key = MetaDataUtil.getApplicationInfo(this, METADATA_STRIP_PK);
                     if (TextUtils.isEmpty(key)) {
                         toast("未设置key");
@@ -139,8 +158,6 @@ public class StripPayActivity extends AppCompatActivity {
                                 }
                         );
                     }
-                } else {
-                    toast("卡信息校验不通过");
                 }
             }
         } catch (Exception e) {
@@ -154,6 +171,10 @@ public class StripPayActivity extends AppCompatActivity {
      * @param view
      */
     public void onClickReturn(View view) {
+        onClickCancel();
+    }
+
+    private void onClickCancel() {
         Result result = new Result();
         result.setCode(Result.CODE_CANCEL)
                 .setMessage("取消支付");

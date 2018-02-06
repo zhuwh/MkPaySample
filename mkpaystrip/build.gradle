@@ -61,7 +61,7 @@ uploadArchives {
                 name 'mkpaystrip'
                 groupId 'com.mark.app'
                 artifactId 'mkpay-strip'
-                version '1.0.0'
+                version '1.0.1'
 //                packaging 'aar'
                 packaging 'jar'
 
