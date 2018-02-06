@@ -9,6 +9,7 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
 
@@ -35,9 +36,14 @@ public interface PdMService {
         }
     }
 
-    String baseUrl = "http://192.168.0.14:8080";
+    //    String baseUrl = "http://192.168.0.14:8080";
+    String baseUrl = "http://test.hzhaya.com/";
 
 
+    //strip支付
+    @FormUrlEncoded
+    @POST("/api/user/pay/strip")
+    Observable<MKBaseResultEntity> payStrip(@Header("authorization") String userToken, @Field("orderSn") String orderSn, @Field("token") String token);
 
     /**
      * 支付信息
@@ -52,7 +58,7 @@ public interface PdMService {
      *
      * @return
      */
-    @POST("/api/test/pay/ipn/info")
+    @POST("/api/user/pay/ipn/info")
     Observable<MKBaseResultEntity<String>> getIpnInfo(@Query("orderSn") String orderSn);
 
     /**

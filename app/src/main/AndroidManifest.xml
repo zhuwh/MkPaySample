@@ -24,11 +24,11 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="com.maikevip.app.sweetelephant.wxapi.WXPayEntryActivity"
-            android:exported="true"
-            android:launchMode="singleTop"
-            android:screenOrientation="portrait"
-            />
+        <!--<activity android:name="com.maikevip.app.sweetelephant.wxapi.WXPayEntryActivity"-->
+        <!--android:exported="true"-->
+        <!--android:launchMode="singleTop"-->
+        <!--android:screenOrientation="portrait"-->
+        <!--/>-->
     </application>
 
 </manifest>

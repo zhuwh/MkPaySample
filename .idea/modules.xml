@@ -7,6 +7,7 @@
       <module fileurl="file://$PROJECT_DIR$/mkipnpay/mkipnpay.iml" filepath="$PROJECT_DIR$/mkipnpay/mkipnpay.iml" />
       <module fileurl="file://$PROJECT_DIR$/mkpayalipay/mkpayalipay.iml" filepath="$PROJECT_DIR$/mkpayalipay/mkpayalipay.iml" />
       <module fileurl="file://$PROJECT_DIR$/mkpaycore/mkpaycore.iml" filepath="$PROJECT_DIR$/mkpaycore/mkpaycore.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mkpaystrip/mkpaystrip.iml" filepath="$PROJECT_DIR$/mkpaystrip/mkpaystrip.iml" />
       <module fileurl="file://$PROJECT_DIR$/mkpaywechat/mkpaywechat.iml" filepath="$PROJECT_DIR$/mkpaywechat/mkpaywechat.iml" />
       <module fileurl="file://$PROJECT_DIR$/mkworldpay/mkworldpay.iml" filepath="$PROJECT_DIR$/mkworldpay/mkworldpay.iml" />
     </modules>

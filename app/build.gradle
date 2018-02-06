@@ -11,6 +11,10 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        manifestPlaceholders = [
+                MKPAY_KEY_STRIP: "pk_test_KDa7Dl9cQ3uP7rybi0kbbPiS"
+        ]
     }
     buildTypes {
         release {
@@ -20,20 +24,30 @@ android {
     }
 }
 
+configurations.all {
+    resolutionStrategy.eachDependency { DependencyResolveDetails details ->
+        def requested = details.requested
+        if (requested.group == 'com.android.support') {
+            if (!requested.name.startsWith("multidex")) {
+                details.useVersion '25.0.1'
+            }
+        }
+    }
+}
+
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:26.+'
+    compile 'com.android.support:appcompat-v7:26+'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     testCompile 'junit:junit:4.12'
     compile 'com.jakewharton.timber:timber:4.5.1'
-        compile 'com.mark.app:mkpay-core:1.0.4'
-        compile 'com.mark.app:mkpay-ipaynow:1.0.+'
+//        compile 'com.mark.app:mkpay-ipaynow:1.0.2'
     //    compile 'com.mark.app:mkpay-alipay:1.0.+'
-        compile 'com.mark.app:mkpay-wechat:1.0.+'
-        compile 'com.mark.app:mkpay-worldpay:1.0.2'
+//        compile 'com.mark.app:mkpay-wechat:1.0.+'
+//        compile 'com.mark.app:mkpay-worldpay:1.0.2'
     compile 'com.squareup.retrofit2:retrofit:2.3.0'
     compile 'com.squareup.retrofit2:converter-gson:2.3.0'
     compile 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
@@ -41,5 +55,7 @@ dependencies {
     compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
 //    compile project(':mkpaycore')
     //    compile project(':mkpayalipay')
-//    compile project(':mkipnpay')
+    compile 'com.mark.app:mkpay-core:1.0.5'
+    compile 'com.mark.app:mkpay-strip:1.0.0'
+    compile 'com.stripe:stripe-android:5.1.0'
 }

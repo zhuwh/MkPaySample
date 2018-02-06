@@ -1,1 +1,1 @@
-include ':app', ':mkpaycore', ':mkpayalipay', ':mkpaywechat', ':mkworldpay', ':mkipnpay'
+include ':app', ':mkpaycore', ':mkpayalipay', ':mkpaywechat', ':mkworldpay', ':mkipnpay', ':mkpaystrip'

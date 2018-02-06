@@ -3,48 +3,55 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.mark.app.mkpaysample.MainActivity"
     android:orientation="vertical"
-    >
+    tools:context="com.mark.app.mkpaysample.MainActivity">
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Alipay"
         android:onClick="alipay"
-        tools:layout_editor_absoluteY="0dp"
-        tools:layout_editor_absoluteX="8dp" />
+        android:text="Alipay"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="0dp" />
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Wechat Pay"
         android:onClick="wechatPay"
-        tools:layout_editor_absoluteY="0dp"
-        tools:layout_editor_absoluteX="8dp" />
+        android:text="Wechat Pay"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="0dp" />
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="add Card"
         android:onClick="addCard"
-        tools:layout_editor_absoluteY="0dp"
-        tools:layout_editor_absoluteX="8dp" />
+        android:text="add Card"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="0dp" />
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="WorldPay"
         android:onClick="worldPay"
-        tools:layout_editor_absoluteY="0dp"
-        tools:layout_editor_absoluteX="8dp" />
+        android:text="WorldPay"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="0dp" />
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="IpayNow"
         android:onClick="ipn"
-        tools:layout_editor_absoluteY="0dp"
-        tools:layout_editor_absoluteX="8dp" />
+        android:text="IpayNow"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="0dp" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="stripPay"
+        android:text="strip支付"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="0dp" />
 
 </LinearLayout>
