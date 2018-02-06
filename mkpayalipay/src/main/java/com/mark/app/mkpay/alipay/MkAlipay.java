@@ -22,13 +22,14 @@ import timber.log.Timber;
 public class MkAlipay implements MkPayInf<String> {
 
     MkPayCallback mCallback;
+
     @Override
     public void setContext(Context context) {
 
     }
 
     @Override
-    public void pay(final Activity activity, final String payInfo,final MkPayCallback callback) {
+    public void pay(final Activity activity, final String payInfo, final MkPayCallback callback) {
         Timber.d("<MkAlipay:pay>");
         mCallback = callback;
         new HandlerThread("alipay") {
@@ -36,7 +37,6 @@ public class MkAlipay implements MkPayInf<String> {
             protected void onLooperPrepared() {
                 PayTask alipay = new PayTask(activity);
                 Map<String, String> result = alipay.payV2(payInfo, true);
-                Log.i("msp", result.toString());
                 if (result == null) {
                     if (mCallback != null) {
                         MkPayResult payResult = new MkPayResult(MkPayResult.PAY_STATE_FAIL, "无返回内容");
@@ -45,6 +45,7 @@ public class MkAlipay implements MkPayInf<String> {
                     }
                     return;
                 }
+                Log.i("msp", result.toString());
 
                 String resultInfo = ""; //本次操作返回的结果数据
                 int resultStatus = -1;  //状态代码
