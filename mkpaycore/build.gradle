@@ -29,7 +29,7 @@ dependencies {
     })
     compile 'com.android.support:appcompat-v7:26.+'
     testCompile 'junit:junit:4.12'
-    compile 'com.jakewharton.timber:timber:+'
+    compile rootProject.ext.dependencies["timber"]
 }
 
 uploadArchives {
@@ -45,7 +45,7 @@ uploadArchives {
                 name 'mkpaycore'
                 groupId 'com.mark.app'
                 artifactId 'mkpay-core'
-                version '1.0.5'
+                version '1.0.6'
                 packaging 'jar'
 
                 licenses {
