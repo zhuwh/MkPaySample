@@ -30,7 +30,7 @@ dependencies {
 //    compile project(':mkpaycore')
     compile 'com.mark.app:mkpay-core:1.0.+'
     compile files('libs/alipaySdk-20170710.jar')
-    compile 'com.jakewharton.timber:timber:+'
+    compile rootProject.ext.dependencies["timber"]
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     testCompile 'junit:junit:4.12'
 }
@@ -48,7 +48,7 @@ uploadArchives {
                 name 'mkpayalipay'
                 groupId 'com.mark.app'
                 artifactId 'mkpay-alipay'
-                version '1.0.1'
+                version '1.0.2'
                 packaging 'jar'
 
                 licenses {
