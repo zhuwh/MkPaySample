@@ -43,7 +43,7 @@ dependencies {
     compile 'com.android.support:appcompat-v7:26+'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     testCompile 'junit:junit:4.12'
-    compile 'com.jakewharton.timber:timber:4.5.1'
+    compile rootProject.ext.dependencies["timber"]
 //        compile 'com.mark.app:mkpay-ipaynow:1.0.2'
     //    compile 'com.mark.app:mkpay-alipay:1.0.+'
 //        compile 'com.mark.app:mkpay-wechat:1.0.+'

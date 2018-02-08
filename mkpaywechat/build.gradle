@@ -31,7 +31,7 @@ dependencies {
 //    compile project(':mkpaycore')
     compile 'com.mark.app:mkpay-core:1.0.+'
     compile 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:+'
-    compile 'com.jakewharton.timber:timber:+'
+    compile rootProject.ext.dependencies["timber"]
 }
 
 uploadArchives {
@@ -47,7 +47,7 @@ uploadArchives {
                 name 'mkpaywechat'
                 groupId 'com.mark.app'
                 artifactId 'mkpay-wechat'
-                version '1.0.0'
+                version '1.0.1'
 //                packaging 'aar'
                 packaging 'jar'
 

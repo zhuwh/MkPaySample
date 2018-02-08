@@ -1,0 +1,6 @@
+ext {
+
+    dependencies = [
+            "timber": 'com.jakewharton.timber:timber:4.1.0'
+    ]
+}
