@@ -5,6 +5,8 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
 import android.support.v4.content.LocalBroadcastManager;
 
 import com.mark.app.mkpay.core.MkPayCallback;
@@ -28,11 +30,15 @@ public class MkWechatPay implements MkPayInf<String> {
     public static final String WX_PAY_RESULT_ACTION = "_WX_PAY_RESULT_ACTION";
     public static final String WX_PAY_RESULT_KEY = "_WX_PAY_RESULT_KEY";
 
+    public static final String WX_APPID_KEY = "wechat_app_id";
+
     private BroadcastReceiver mWxPayResultReceiver;
     private IWXAPI mWxApi; //微信API
-    public static final String WX_APPID = "wx026cb332cea46a51";
+    public static String WX_APPID;
 
     private MkPayCallback mCallBack;
+
+    public static final String APPID_KEY = "wechat_app_id";
 
     private boolean isInit = false;
 
@@ -43,6 +49,18 @@ public class MkWechatPay implements MkPayInf<String> {
     @Override
     public void setContext(Context context) {
         if (!isInit) {
+            try {
+                ApplicationInfo appInfo = context.getPackageManager()
+                        .getApplicationInfo(context.getPackageName(),
+                                PackageManager.GET_META_DATA);
+                WX_APPID=appInfo.metaData.getString(APPID_KEY);
+            } catch (PackageManager.NameNotFoundException e) {
+                e.printStackTrace();
+            }
+
+            if (WX_APPID==null){
+                throw new IllegalArgumentException("WX_APPID 不能为空");
+            }
             mWxApi = WXAPIFactory.createWXAPI(context, null);
             mWxApi.registerApp(WX_APPID);
             mWxPayResultReceiver = new WxPayResultReceiver();
