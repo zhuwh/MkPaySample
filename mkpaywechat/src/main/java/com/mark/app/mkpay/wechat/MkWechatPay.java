@@ -49,18 +49,20 @@ public class MkWechatPay implements MkPayInf<String> {
     @Override
     public void setContext(Context context) {
         if (!isInit) {
-            try {
-                ApplicationInfo appInfo = context.getPackageManager()
-                        .getApplicationInfo(context.getPackageName(),
-                                PackageManager.GET_META_DATA);
-                WX_APPID=appInfo.metaData.getString(APPID_KEY);
-            } catch (PackageManager.NameNotFoundException e) {
-                e.printStackTrace();
+            if (WX_APPID==null){
+                try {
+                    ApplicationInfo appInfo = context.getPackageManager()
+                            .getApplicationInfo(context.getPackageName(),
+                                    PackageManager.GET_META_DATA);
+                    WX_APPID=appInfo.metaData.getString(APPID_KEY);
+                } catch (PackageManager.NameNotFoundException e) {
+                    e.printStackTrace();
+                }
+                if (WX_APPID==null){
+                    throw new IllegalArgumentException("WX_APPID 不能为空");
+                }
             }
 
-            if (WX_APPID==null){
-                throw new IllegalArgumentException("WX_APPID 不能为空");
-            }
             mWxApi = WXAPIFactory.createWXAPI(context, null);
             mWxApi.registerApp(WX_APPID);
             mWxPayResultReceiver = new WxPayResultReceiver();

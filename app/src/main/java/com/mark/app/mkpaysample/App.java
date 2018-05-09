@@ -2,6 +2,8 @@ package com.mark.app.mkpaysample;
 
 import android.app.Application;
 
+import com.mark.app.mkpay.wechat.MkWechatPay;
+
 import timber.log.Timber;
 
 /**
@@ -20,6 +22,7 @@ public class App extends Application {
             Timber.plant(new Timber.DebugTree());
             //        EnvUtils.setEnv(EnvUtils.EnvEnum.SANDBOX);
         }
+        MkWechatPay.WX_APPID = "123456";
 
     }
 

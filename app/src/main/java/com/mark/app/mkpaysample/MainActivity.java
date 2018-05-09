@@ -2,12 +2,20 @@ package com.mark.app.mkpaysample;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.util.ArrayMap;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.mark.app.mkpay.core.MkPay;
+import com.mark.app.mkpay.core.MkPayCallback;
+import com.mark.app.mkpay.core.MkPayResult;
 import com.mark.app.mkpay.strip.StripPayActivity;
+
+import org.json.JSONObject;
+
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -90,43 +98,44 @@ public class MainActivity extends AppCompatActivity {
 //                });
 //    }
 //
-//    public void wechatPay(View v) {
-////       startActivity(new Intent(this,Test.class));
-////       if (true)return;
-//        Map payInfoMap = new ArrayMap();
-//        payInfoMap.put("timestamp", "1506664307");
-//        payInfoMap.put("partnerid", "1466883302");
-//        payInfoMap.put("package", "Sign=WXPay");
-//        payInfoMap.put("noncestr", "2c7449d6-d374-41bc-8a64-a6296aed");
-//        payInfoMap.put("sign", "711D20CFFB023C0E12FF45DBA2A28B6C");
-//        payInfoMap.put("appid", "wx026cb332cea46a51");
-//        payInfoMap.put("prepayid", "wx201709291350506dc15ae5bf0978656151");
-//        JSONObject payInfo = new JSONObject(payInfoMap);
-//
-//        pay.pay(this, payInfo.toString(), MkPay.PAY_TYPE_WXPAY, new MkPayCallback() {
-//            @Override
-//            public void onPayResult(MkPayResult result) {
-//                switch (result.getResultStatus()) {
-//                    case MkPayResult.PAY_STATE_SUCCESS: {
-//                        Toast.makeText(MainActivity.this, "支付成功", Toast.LENGTH_SHORT).show();
-//                        break;
-//                    }
-//                    case MkPayResult.PAY_STATE_CANCEL: {
-//                        Toast.makeText(MainActivity.this, "支付取消", Toast.LENGTH_SHORT).show();
-//                        break;
-//                    }
-//                    case MkPayResult.PAY_STATE_FAIL: {
-//                        Toast.makeText(MainActivity.this, "支付失败", Toast.LENGTH_SHORT).show();
-//                        break;
-//                    }
-//                    case MkPayResult.PAY_STATE_ERROR: {
-//                        Toast.makeText(MainActivity.this, "支付错误", Toast.LENGTH_SHORT).show();
-//                        break;
-//                    }
-//                }
-//            }
-//        });
-//    }
+    public void wechatPay(View v) {
+//       startActivity(new Intent(this,Test.class));
+//       if (true)return;
+        Map payInfoMap = new ArrayMap();
+        payInfoMap.put("timestamp", "1506664307");
+        payInfoMap.put("partnerid", "1466883302");
+        payInfoMap.put("package", "Sign=WXPay");
+        payInfoMap.put("noncestr", "2c7449d6-d374-41bc-8a64-a6296aed");
+        payInfoMap.put("sign", "711D20CFFB023C0E12FF45DBA2A28B6C");
+        payInfoMap.put("appid", "wx026cb332cea46a51");
+        payInfoMap.put("prepayid", "wx201709291350506dc15ae5bf0978656151");
+        JSONObject payInfo = new JSONObject(payInfoMap);
+        MkPay pay = MkPay.getInstance(this);
+        pay.init(new int[]{ MkPay.PAY_TYPE_WXPAY});
+        pay.pay(this, payInfo.toString(), MkPay.PAY_TYPE_WXPAY, new MkPayCallback() {
+            @Override
+            public void onPayResult(MkPayResult result) {
+                switch (result.getResultStatus()) {
+                    case MkPayResult.PAY_STATE_SUCCESS: {
+                        Toast.makeText(MainActivity.this, "支付成功", Toast.LENGTH_SHORT).show();
+                        break;
+                    }
+                    case MkPayResult.PAY_STATE_CANCEL: {
+                        Toast.makeText(MainActivity.this, "支付取消", Toast.LENGTH_SHORT).show();
+                        break;
+                    }
+                    case MkPayResult.PAY_STATE_FAIL: {
+                        Toast.makeText(MainActivity.this, "支付失败", Toast.LENGTH_SHORT).show();
+                        break;
+                    }
+                    case MkPayResult.PAY_STATE_ERROR: {
+                        Toast.makeText(MainActivity.this, "支付错误", Toast.LENGTH_SHORT).show();
+                        break;
+                    }
+                }
+            }
+        });
+    }
 //
 //    public void ipn(View v) {
 //        App.get().getPdmService()
